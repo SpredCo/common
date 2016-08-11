@@ -156,10 +156,10 @@ describe('Testing User model', function () {
 
   it('toJson', function () {
     const obj = pUser.toJSON();
-
     expect(obj._id).to.be.undefined;
     expect(obj.id).to.eql(pUser._id);
     expect(obj.password).to.be.undefined;
+    expect(obj.__v).to.be.undefined;
   });
 
   it('get fullname', function (done) {
