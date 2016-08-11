@@ -96,8 +96,8 @@ describe('Testing Client model', function () {
     });
   });
 
-  it('toJson()', function () {
-    const result = client.toJSON();
+  it('toObject()', function () {
+    const result = client.toObject();
 
     expect(result).to.not.be.null;
     expect(result).to.be.an('object');
