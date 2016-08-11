@@ -4,7 +4,9 @@
   "description": "Common models library for Spred services",
   "main": "index.js",
   "scripts": {
-    "test": "echo \"Error: no test specified\" && exit 1"
+    "preversion": "gulp lint && npm test",
+    "version": "gulp changelog && git add CHANGELOG.md",
+    "test": "istanbul cover _mocha -- test/test.js -R spec"
   },
   "repository": {
     "type": "git",
