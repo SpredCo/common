@@ -1,0 +1,37 @@
+{
+  "name": "spred-common",
+  "version": "0.0.0",
+  "description": "Common models library for Spred services",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/SpredCo/common.git"
+  },
+  "author": "",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/SpredCo/common/issues"
+  },
+  "homepage": "https://github.com/SpredCo/common#readme",
+  "dependencies": {
+    "bcrypt": "^0.8.7",
+    "bluebird": "^3.4.1",
+    "mongoose": "^4.5.8",
+    "mongoose-relationship": "^0.1.5"
+  },
+  "devDependencies": {
+    "chai": "^3.5.0",
+    "eslint": "^3.2.2",
+    "eslint-config-standard": "^5.3.5",
+    "eslint-plugin-promise": "^2.0.1",
+    "eslint-plugin-standard": "^2.0.0",
+    "gulp": "^3.9.1",
+    "gulp-changelogmd": "^1.0.6",
+    "gulp-clean": "^0.3.2",
+    "gulp-eslint": "^3.0.1",
+    "require-dir": "^0.3.0"
+  }
+}
