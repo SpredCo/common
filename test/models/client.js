@@ -43,7 +43,6 @@ describe('Testing Client model', function () {
         done(err);
       } else {
         expect(fClients).to.be.an('array');
-        expect(fClients).to.have.lengthOf(2);
         done();
       }
     });
@@ -97,7 +96,7 @@ describe('Testing Client model', function () {
   });
 
   it('toObject()', function () {
-    const result = client.toObject();
+    const result = client.toObject({print: true});
 
     expect(result).to.not.be.null;
     expect(result).to.be.an('object');

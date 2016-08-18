@@ -155,7 +155,7 @@ describe('Testing User model', function () {
   });
 
   it('toObject', function () {
-    const obj = pUser.toObject();
+    const obj = pUser.toObject({print: true});
     expect(obj._id).to.be.undefined;
     expect(obj.id).to.eql(pUser._id);
     expect(obj.password).to.be.undefined;
