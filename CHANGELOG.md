@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.3.0
+
+* Add access token model
+* Add refresh token model
+* Fix toObject() function
+
+*guedj_m, Thu Aug 18 2016 14:43:55 GMT+0200 (CEST)*
+
+---
 ## 0.2.0
 
 * Add client model
