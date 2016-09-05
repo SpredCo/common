@@ -1,5 +1,14 @@
 # Changelog
 
+## 0.4.0
+
+* Add pseudo to user model
+* Add following to user model
+* Add follow() and unfollow() methods to user 
+
+*guedj_m, Mon Sep 05 2016 15:29:40 GMT+0200 (CEST)*
+
+---
 ## 0.3.0
 
 * Add access token model
