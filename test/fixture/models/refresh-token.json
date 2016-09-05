@@ -6,7 +6,8 @@
     "email": "test@refreshtoken.com",
     "password": "Hello",
     "firstName": "Maxime",
-    "lastName": "Guedj"
+    "lastName": "Guedj",
+    "pseudo": "resfreshTokenPseudo"
   },
   "token": "ThisIsARefreshToken"
 }

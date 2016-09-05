@@ -10,6 +10,7 @@ describe('Testing access_token model', function () {
   before(function (done) {
     common.userModel.createPassword(fixture.user.email,
       fixture.user.password,
+      fixture.user.pseudo,
       fixture.user.firstName,
       fixture.user.lastName,
       function (err, cUser) {

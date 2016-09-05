@@ -6,7 +6,8 @@
     "email": "test@accesstoken.com",
     "password": "Hello",
     "firstName": "Maxime",
-    "lastName": "Guedj"
+    "lastName": "Guedj",
+    "pseudo": "accessTokenPseudo"
   },
   "token": "ThisIsAnAccessToken"
 }
