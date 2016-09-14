@@ -1,0 +1,20 @@
+{
+  "user1": {
+    "email": "user@report1.com",
+    "password": "Hello",
+    "firstName": "Maxime",
+    "lastName": "Guedj",
+    "pictureUrl": "http://toto",
+    "pseudo": "report1"
+  },
+  "user2": {
+    "email": "user@report2.com",
+    "password": "0123456789",
+    "firstName": "Maxime",
+    "lastName": "Guedj",
+    "pictureUrl": "http://toto",
+    "pseudo": "report2"
+  },
+  "motif1": "Nul",
+  "motif2": "Nul à chier"
+}
