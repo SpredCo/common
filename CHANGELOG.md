@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.0
+
+* Add report model
+
+*guedj_m, Wed Sep 14 2016 15:52:22 GMT+0200 (CEST)*
+
+---
 ## 0.4.0
 
 * Add pseudo to user model
