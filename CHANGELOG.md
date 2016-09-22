@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.0
+
+* Integrate inbox models
+* Rework models & test structure
+
+*guedj_m, Thu Sep 22 2016 17:23:15 GMT+0200 (CEST)*
+
+---
 ## 0.5.2
 
 * Fix issue userModel.getByCredential when user does not have password
