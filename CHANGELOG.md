@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.5.2
+
+* Fix issue userModel.getByCredential when user does not have password
+
+*guedj_m, Thu Sep 22 2016 11:56:51 GMT+0200 (CEST)*
+
+---
 ## 0.5.0
 
 * Add report model
