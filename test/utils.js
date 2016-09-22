@@ -5,7 +5,7 @@ const fixture = require('./fixture/utils.json');
 it('getRandomInt', function () {
   const rd = common.utils.getRandomInt(fixture.random.min, fixture.random.max);
   expect(rd).to.be.greaterThan(fixture.random.min);
-  expect(rd).to.be.lessThan(fixture.random.max);
+  expect(rd).to.be.lessThan(fixture.random.max + 1);
 });
 
 it('uidGen', function () {
