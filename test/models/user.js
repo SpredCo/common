@@ -190,6 +190,39 @@ describe('Testing user models', function () {
       });
     });
 
+    it('usersExist()', function (done) {
+      common.userModel.usersExist(['fez', 'hufez'], function (err, result) {
+        if (err) {
+          done(err);
+        } else {
+          expect(result).to.be.false;
+          done();
+        }
+      });
+    });
+
+    it('usersExist()', function (done) {
+      common.userModel.usersExist(['aaaaaaaaaaaa', 'zzzzzzzzzzzz'], function (err, result) {
+        if (err) {
+          done(err);
+        } else {
+          expect(result).to.be.false;
+          done();
+        }
+      });
+    });
+
+    it('usersExist()', function (done) {
+      common.userModel.usersExist([gUser.id, faUser.id], function (err, result) {
+        if (err) {
+          done(err);
+        } else {
+          expect(result).to.be.true;
+          done();
+        }
+      });
+    });
+
     it('follow()', function (done) {
       pUser.follow(faUser, function (err) {
         if (err) {
