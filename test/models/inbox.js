@@ -106,6 +106,28 @@ describe('Testing inbox models', function () {
     });
   });
 
+  it('conversationModel.getByIdAndUser()', function (done) {
+    common.conversationModel.getByIdAndUser(conv.id, user1, function (err, fConv) {
+      if (err) {
+        done(err);
+      } else {
+        expect(fConv.object).to.equal(fixture.object1);
+        done();
+      }
+    });
+  });
+
+  it('conversationModel.getByIdAndUser()', function (done) {
+    common.conversationModel.getByIdAndUser('aaaaaaaaaaaa', user1, function (err, fConv) {
+      if (err) {
+        done(err);
+      } else {
+        expect(fConv).to.be.null;
+        done();
+      }
+    });
+  });
+
   it('conversation.toObject()', function () {
     var result = conv.toObject({ print: true });
     expect(result.id).to.not.be.undefined;

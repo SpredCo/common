@@ -4,7 +4,7 @@
     "password": "Hello",
     "firstName": "Maxime",
     "lastName": "Guedj",
-    "pseudo": "pseudo"
+    "pseudo": "zpseudo"
   },
   "google": {
     "email": "max@google.com",
@@ -12,7 +12,7 @@
     "firstName": "Maxime",
     "lastName": "Guedj",
     "pictureUrl": "http://toto",
-    "pseudo": "googlePseudo"
+    "pseudo": "zgooglePseudo"
   },
   "facebook": {
     "email": "test@facebook.com",

@@ -104,6 +104,17 @@ describe('Testing user models', function () {
       });
     });
 
+    it('getByPartialPseudo()', function (done) {
+      common.userModel.getByPartialPseudo('z', 10, function (err, fUsers) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fUsers).to.have.lengthOf(2);
+          done();
+        }
+      });
+    });
+
     it('getByCredential()', function (done) {
       common.userModel.getByCredential(pUser.email,
         fixture.password.password,
