@@ -87,7 +87,6 @@ describe('Testing inbox models', function () {
           } else {
             expect(fConversations).to.has.lengthOf(1);
             expect(fConversations[0].msg).to.has.lengthOf(2);
-            expect(fConversations[0].msg[1].read).to.be.true;
             done();
           }
         });
@@ -142,6 +141,18 @@ describe('Testing inbox models', function () {
         done(err);
       } else {
         expect(fMsg.content).to.equal(msg.content);
+        done();
+      }
+    });
+  });
+
+  it('messageModel.getByIdWithRead()', function (done) {
+    common.messageModel.getByIdWithRead(msg.id, user2, function (err, fMsg) {
+      if (err) {
+        done(err);
+      } else {
+        expect(fMsg.content).to.equal(fixture.content2);
+        expect(fMsg.read).to.be.false;
         done();
       }
     });
