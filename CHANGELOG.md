@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.6.2
+
+* Add messageModel.getByConversationAndId()
+
+*guedj_m, Sun Sep 25 2016 11:58:09 GMT+0200 (CEST)*
+
+---
 ## 0.6.1
 
 * Add conversationModel.getByIdAndUser()
