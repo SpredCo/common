@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.1
+
+* Add conversationModel.getByIdAndUser()
+* Fix getById() func by checking the ID format
+
+*guedj_m, Sun Sep 25 2016 11:40:00 GMT+0200 (CEST)*
+
+---
 ## 0.6.0
 
 * Integrate inbox models
