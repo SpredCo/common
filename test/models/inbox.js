@@ -136,6 +136,17 @@ describe('Testing inbox models', function () {
     expect(result.updatedAt).to.be.undefined;
   });
 
+  it('messageModel.getConversationAndId()', function (done) {
+    common.messageModel.getByConversationAndId(conv.id, msg.id, function (err, fMsg) {
+      if (err) {
+        done(err);
+      } else {
+        expect(fMsg.content).to.equal(msg.content);
+        done();
+      }
+    });
+  });
+
   it('message.toObject()', function () {
     var result = msg.toObject({ print: true });
     expect(result.id).to.not.be.undefined;
