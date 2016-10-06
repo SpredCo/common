@@ -103,6 +103,17 @@ describe('Testing User model', function () {
     });
   });
 
+  it('getByPartialPseudo()', function (done) {
+    common.userModel.getByPartialPseudo('pse', 10, function (err, fUser) {
+      if (err) {
+        done(err);
+      } else {
+        expect(fUser).to.have.lengthOf(3);
+        done();
+      }
+    });
+  });
+
   it('getByCredential()', function (done) {
     common.userModel.getByCredential(pUser.email,
       fixture.password.password,
@@ -166,18 +177,6 @@ describe('Testing User model', function () {
     });
   });
 
-  it('getByPseudo()', function (done) {
-    common.userModel.getByPseudo(pUser.pseudo, function (err, fUser) {
-      if (err) {
-        done(err);
-      } else {
-        expect(fUser).to.not.be.null;
-        expect(fUser._id).to.eql(pUser._id);
-        done();
-      }
-    });
-  });
-
   it('follow()', function (done) {
     pUser.follow(faUser, function (err) {
       if (err) {
@@ -195,6 +194,34 @@ describe('Testing User model', function () {
             done();
           }
         });
+      }
+    });
+  });
+
+  it('getByPseudo()', function (done) {
+    common.userModel.getByPseudo(pUser.pseudo, false, function (err, fUser) {
+      if (err) {
+        done(err);
+      } else {
+        expect(fUser).to.not.be.null;
+        expect(fUser._id).to.eql(pUser._id);
+        expect(fUser.following).to.be.an.array;
+        expect(fUser.following[0]._id).to.be.undefined;
+        done();
+      }
+    });
+  });
+
+  it('getByPseudo()', function (done) {
+    common.userModel.getByPseudo(pUser.pseudo, true, function (err, fUser) {
+      if (err) {
+        done(err);
+      } else {
+        expect(fUser).to.not.be.null;
+        expect(fUser._id).to.eql(pUser._id);
+        expect(fUser.following).to.be.an.array;
+        expect(fUser.following[0]._id).to.not.be.undefined;
+        done();
       }
     });
   });

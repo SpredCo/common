@@ -12,7 +12,7 @@
     "firstName": "Maxime",
     "lastName": "Guedj",
     "pictureUrl": "http://toto",
-    "pseudo": "googlePseudo"
+    "pseudo": "pseudoGoogle"
   },
   "facebook": {
     "email": "test@facebook.com",
@@ -20,6 +20,6 @@
     "firstName": "Maxime",
     "lastName": "Guedj",
     "pictureUrl": "http://xd",
-    "pseudo": "fbPseudo"
+    "pseudo": "pseudoFb"
   }
 }
