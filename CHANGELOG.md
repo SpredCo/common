@@ -1,5 +1,42 @@
 # Changelog
 
+## 0.6.2
+
+* Add messageModel.getByConversationAndId()
+
+*guedj_m, Sun Sep 25 2016 11:58:09 GMT+0200 (CEST)*
+
+---
+## 0.6.1
+
+* Add conversationModel.getByIdAndUser()
+* Fix getById() func by checking the ID format
+
+*guedj_m, Sun Sep 25 2016 11:40:00 GMT+0200 (CEST)*
+
+---
+## 0.6.0
+
+* Integrate inbox models
+* Rework models & test structure
+
+*guedj_m, Thu Sep 22 2016 17:23:15 GMT+0200 (CEST)*
+
+---
+## 0.5.2
+
+* Fix issue userModel.getByCredential when user does not have password
+
+*guedj_m, Thu Sep 22 2016 11:56:51 GMT+0200 (CEST)*
+
+---
+## 0.5.0
+
+* Add report model
+
+*guedj_m, Wed Sep 14 2016 15:52:22 GMT+0200 (CEST)*
+
+---
 ## 0.4.0
 
 * Add pseudo to user model
