@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.6.5
+
+* Add population of following
+* Add get by partial email
+
+*guedj_m, Thu Oct 06 2016 14:43:51 GMT+0200 (CEST)*
+
+---
 ## 0.6.2
 
 * Add messageModel.getByConversationAndId()
