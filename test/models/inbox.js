@@ -94,6 +94,34 @@ describe('Testing inbox models', function () {
     });
   });
 
+  it('messageRead.getUnreadCount()', function (done) {
+    common.messageReadModel.getUnreadCount(user1, function (err, result) {
+      if (err) {
+        done(err);
+      } else {
+        expect(result).to.equal(1);
+        done();
+      }
+    });
+  });
+
+  it('messageRead.updateReadConversation()', function (done) {
+    common.messageReadModel.updateReadConversation(user1.id, conv.id, true, function (err) {
+      if (err) {
+        done(err);
+      } else {
+        common.messageReadModel.getUnreadCount(user1, function (err, result) {
+          if (err) {
+            done(err);
+          } else {
+            expect(result).to.equal(0);
+            done();
+          }
+        });
+      }
+    });
+  });
+
   it('conversationModel.getById()', function (done) {
     common.conversationModel.getById(conv.id, function (err, fConv) {
       if (err) {
