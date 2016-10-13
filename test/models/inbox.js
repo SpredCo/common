@@ -34,17 +34,6 @@ describe('Testing inbox models', function () {
     });
   });
 
-  it('conversationModel.getByUser()', function (done) {
-    common.conversationModel.getByUser(user1, function (err, fConversations) {
-      if (err) {
-        done(err);
-      } else {
-        expect(fConversations).to.has.lengthOf(0);
-        done();
-      }
-    });
-  });
-
   it('conversationModel.sendNewMessage()', function (done) {
     common.conversationModel.sendNewMessage(fixture.object1, [user1, user2, user3], true, user1, fixture.content1, function (err, cConv, cMsg) {
       if (err) {
@@ -52,6 +41,23 @@ describe('Testing inbox models', function () {
       } else {
         expect(cConv).to.not.be.undefined;
         expect(cConv.object).to.equal(fixture.object1);
+        expect(cConv.canAnswer).to.be.true;
+        expect(cConv.lastMsg).to.not.be.undefined;
+        expect(cConv.members).to.has.lengthOf(3);
+        expect(cMsg.content).to.equal(fixture.content1);
+        expect(cMsg.from.pseudo).to.equal(user1.pseudo);
+        done();
+      }
+    });
+  });
+
+  it('conversationModel.sendNewMessage()', function (done) {
+    common.conversationModel.sendNewMessage(fixture.object2, [user1, user2, user3], true, user1, fixture.content1, function (err, cConv, cMsg) {
+      if (err) {
+        done(err);
+      } else {
+        expect(cConv).to.not.be.undefined;
+        expect(cConv.object).to.equal(fixture.object2);
         expect(cConv.canAnswer).to.be.true;
         expect(cConv.lastMsg).to.not.be.undefined;
         expect(cConv.members).to.has.lengthOf(3);
@@ -76,17 +82,45 @@ describe('Testing inbox models', function () {
     });
   });
 
+  it('conversation.createNewMessage()', function (done) {
+    conv.sendNewMessage(user2, fixture.content3, function (err, cMsg) {
+      if (err) {
+        done(err);
+      } else {
+        expect(cMsg.from.pseudo).to.equal(fixture.user2.pseudo);
+        expect(cMsg.content).to.equal(fixture.content3);
+        done();
+      }
+    });
+  });
+
+  it('conversation.getUserConversations()', function (done) {
+    common.conversationModel.getUserConversations(user2, function (err, fConversation) {
+      if (err) {
+        done(err);
+      } else {
+        expect(fConversation).to.be.an.array;
+        expect(fConversation).to.have.lengthOf(2);
+        expect(fConversation[0].read).to.be.false;
+        expect(fConversation[0].object).to.equal(fixture.object2);
+        expect(fConversation[1].read).to.be.false;
+        expect(fConversation[1].object).to.equal(fixture.object1);
+        done();
+      }
+    });
+  });
+
   it('messageRead.updateRead()', function (done) {
     common.messageReadModel.updateRead(user3, msg, true, function (err) {
       if (err) {
         done(err);
       } else {
-        common.conversationModel.getByUser(user3, function (err, fConversations) {
+        common.messageReadModel.getByUserMessage(user3, msg._id, function (err, fMsg) {
           if (err) {
             done(err);
           } else {
-            expect(fConversations).to.has.lengthOf(1);
-            expect(fConversations[0].msg).to.has.lengthOf(2);
+            expect(fMsg).to.not.be.null;
+            expect(fMsg.read).to.be.true;
             done();
           }
         });
@@ -99,7 +133,7 @@ describe('Testing inbox models', function () {
       if (err) {
         done(err);
       } else {
-        expect(result).to.equal(1);
+        expect(result).to.equal(2);
         done();
       }
     });
@@ -127,7 +161,7 @@ describe('Testing inbox models', function () {
       if (err) {
         done(err);
       } else {
-        expect(fConv.object).to.equal(fixture.object1);
+        expect(fConv.object).to.equal(fixture.object2);
         done();
       }
     });
@@ -138,7 +172,28 @@ describe('Testing inbox models', function () {
       if (err) {
         done(err);
       } else {
-        expect(fConv.object).to.equal(fixture.object1);
+        expect(fConv.object).to.equal(fixture.object2);
+        expect(fConv.msg).to.have.lengthOf(3);
+        expect(fConv.msg[0].content).to.equal(fixture.content3);
+        expect(fConv.msg[1].content).to.equal(fixture.content2);
+        expect(fConv.msg[2].content).to.equal(fixture.content1);
+        expect(fConv.msg[0].read).to.be.true;
+        done();
+      }
+    });
+  });
+
+  it('conversationModel.getByIdAndUser()', function (done) {
+    common.conversationModel.getByIdAndUser(conv.id, user3, function (err, fConv) {
+      if (err) {
+        done(err);
+      } else {
+        expect(fConv.object).to.equal(fixture.object2);
+        expect(fConv.msg).to.have.lengthOf(3);
+        expect(fConv.msg[0].content).to.equal(fixture.content3);
+        expect(fConv.msg[1].content).to.equal(fixture.content2);
+        expect(fConv.msg[2].content).to.equal(fixture.content1);
+        expect(fConv.msg[0].read).to.be.false;
         done();
       }
     });
@@ -180,7 +235,7 @@ describe('Testing inbox models', function () {
         done(err);
       } else {
         expect(fMsg.content).to.equal(fixture.content2);
-        expect(fMsg.read).to.be.false;
+        expect(fMsg.read).to.be.true;
         done();
       }
     });

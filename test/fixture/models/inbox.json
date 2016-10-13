@@ -21,6 +21,8 @@
     "pseudo": "user3InboxPseudo"
   },
   "object1": "Test",
+  "object2": "Test2",
   "content1": "Hello",
-  "content2": "Salut"
+  "content2": "Salut",
+  "content3": "Hola"
 }
