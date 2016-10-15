@@ -174,9 +174,9 @@ describe('Testing inbox models', function () {
       } else {
         expect(fConv.object).to.equal(fixture.object2);
         expect(fConv.msg).to.have.lengthOf(3);
-        expect(fConv.msg[0].content).to.equal(fixture.content3);
+        expect(fConv.msg[0].content).to.equal(fixture.content1);
         expect(fConv.msg[1].content).to.equal(fixture.content2);
-        expect(fConv.msg[2].content).to.equal(fixture.content1);
+        expect(fConv.msg[2].content).to.equal(fixture.content3);
         expect(fConv.msg[0].read).to.be.true;
         done();
       }
@@ -190,9 +190,9 @@ describe('Testing inbox models', function () {
       } else {
         expect(fConv.object).to.equal(fixture.object2);
         expect(fConv.msg).to.have.lengthOf(3);
-        expect(fConv.msg[0].content).to.equal(fixture.content3);
+        expect(fConv.msg[0].content).to.equal(fixture.content1);
         expect(fConv.msg[1].content).to.equal(fixture.content2);
-        expect(fConv.msg[2].content).to.equal(fixture.content1);
+        expect(fConv.msg[2].content).to.equal(fixture.content3);
         expect(fConv.msg[0].read).to.be.false;
         done();
       }
