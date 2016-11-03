@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.0
+
+* Integrate spredcast model
+* Integrate cast token model
+
+*guedj_m, Thu Nov 03 2016 17:02:10 GMT+0100 (CET)*
+
+---
 ## 0.6.5
 
 * Add population of following
