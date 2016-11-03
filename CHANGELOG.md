@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.1
+
+* Fix spredCastModel.userCanJoin() if cast doesn't exist
+
+*guedj_m, Thu Nov 03 2016 18:34:18 GMT+0100 (CET)*
+
+---
 ## 0.7.0
 
 * Integrate spredcast model
