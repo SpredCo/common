@@ -1,0 +1,40 @@
+{
+  "client": {
+    "name": "Test client spredcast",
+    "key": "O7oZnkRuTGcBbfzefzeByh",
+    "secret": "3ZxWjrec0vBz8sE7fezfzeMgp9Gooi7rZzAvkz"
+  },
+  "user": {
+    "email": "test@spredcast.con",
+    "password": "spredcastpasswd",
+    "pseudo": "testspredcast"
+  },
+  "user2": {
+    "email": "test2@spredcast.con",
+    "password": "spredcastpasswd2",
+    "pseudo": "testspredcast2"
+  },
+  "user3": {
+    "email": "test3@spredcast.con",
+    "password": "spredcastpasswd3",
+    "pseudo": "testspredcast3"
+  },
+  "cast": {
+    "name": "Test cast",
+    "tags": ["holla", "amigo"],
+    "description": "Holla me amor",
+    "duration": 10,
+    "date": "now",
+    "isPublic": true,
+    "userCapacity": 5
+  },
+  "cast2": {
+    "name": "Test cast",
+    "tags": ["holla", "amigo"],
+    "description": "Holla me amor",
+    "duration": 10,
+    "date": "now",
+    "isPublic": false,
+    "userCapacity": 5
+  }
+}

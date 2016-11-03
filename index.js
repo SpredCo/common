@@ -10,7 +10,9 @@ const lib = {
   reportModel: require('./lib/models/user/report'),
   conversationModel: require('./lib/models/inbox/conversation'),
   messageModel: require('./lib/models/inbox/message'),
-  messageReadModel: require('./lib/models/inbox/messageRead')
+  messageReadModel: require('./lib/models/inbox/messageRead'),
+  spredCastModel: require('./lib/models/spredcast/spredcast'),
+  castTokenModel: require('./lib/models/spredcast/cast-token')
 };
 
 module.exports = lib;
