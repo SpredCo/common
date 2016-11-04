@@ -92,7 +92,7 @@ describe('Testing Spredcast models', function () {
 
   describe('spredCastModel.userCanJoin()', function () {
     it('Should authorize only caster when stream is not started', function (done) {
-      common.spredCastModel.userCanJoin(cast1._id, user._id, function (err, authorisation, fCast) {
+      common.spredCastModel.userCanJoin(cast1._id, user._id, true, function (err, authorisation, fCast) {
         if (err) {
           done(err);
         } else {
@@ -102,7 +102,7 @@ describe('Testing Spredcast models', function () {
       });
     });
     it('Should authorize only caster when stream is not started', function (done) {
-      common.spredCastModel.userCanJoin(cast1._id, user2._id, function (err, authorisation, fCast) {
+      common.spredCastModel.userCanJoin(cast1._id, user2._id, false, function (err, authorisation, fCast) {
         if (err) {
           done(err);
         } else {
@@ -149,7 +149,7 @@ describe('Testing Spredcast models', function () {
     });
 
     it('Sould now allow user2 to access cast1', function (done) {
-      common.spredCastModel.userCanJoin(cast1._id, user2._id, function (err, authorisation, fCast) {
+      common.spredCastModel.userCanJoin(cast1._id, user2._id, false, function (err, authorisation, fCast) {
         if (err) {
           done(err);
         } else {
@@ -160,7 +160,7 @@ describe('Testing Spredcast models', function () {
     });
 
     it('Sould now allow user2 to access cast2', function (done) {
-      common.spredCastModel.userCanJoin(cast2._id, user2._id, function (err, authorisation, fCast) {
+      common.spredCastModel.userCanJoin(cast2._id, user2._id, false, function (err, authorisation, fCast) {
         if (err) {
           done(err);
         } else {
@@ -171,7 +171,7 @@ describe('Testing Spredcast models', function () {
     });
 
     it('Sould not allow user3 to access cast12', function (done) {
-      common.spredCastModel.userCanJoin(cast2._id, user3._id, function (err, authorisation, fCast) {
+      common.spredCastModel.userCanJoin(cast2._id, user3._id, false, function (err, authorisation, fCast) {
         if (err) {
           done(err);
         } else {
