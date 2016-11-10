@@ -216,6 +216,27 @@ describe('Testing Spredcast models', function () {
     });
   });
 
+  describe('spredCastModel.toObject()', function () {
+    it('Should return a clean spredcast object', function (done) {
+      common.spredCastModel.findOne({ _id: cast1._id }).populate('members creator').exec(function (err, fCast) {
+        if (err) {
+          done(err);
+        } else {
+          var ret = fCast.toObject({ print: true });
+          expect(ret._id).to.be.undefined;
+          expect(ret.id).to.not.be.undefined;
+          expect(ret.userCapacity).to.be.undefined;
+          expect(ret.userCount).to.be.undefined;
+          expect(ret.isPublic).to.be.undefined;
+          expect(ret.user_capacity).to.not.be.undefined;
+          expect(ret.user_count).to.not.be.undefined;
+          expect(ret.is_public).to.not.be.undefined;
+          done();
+        }
+      });
+    });
+  });
+
   describe('castTokenModel.createNew()', function () {
     it('Should create a new cast token with an existing user', function (done) {
       common.castTokenModel.createNew(client, user, cast1, true, function (err, cToken) {
