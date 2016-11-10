@@ -1,5 +1,26 @@
 # Changelog
 
+## 0.7.2
+
+
+*guedj_m, Fri Nov 04 2016 16:31:02 GMT+0100 (CET)*
+
+---
+## 0.7.1
+
+* Fix spredCastModel.userCanJoin() if cast doesn't exist
+
+*guedj_m, Thu Nov 03 2016 18:34:18 GMT+0100 (CET)*
+
+---
+## 0.7.0
+
+* Integrate spredcast model
+* Integrate cast token model
+
+*guedj_m, Thu Nov 03 2016 17:02:10 GMT+0100 (CET)*
+
+---
 ## 0.6.5
 
 * Add population of following
