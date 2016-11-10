@@ -115,7 +115,6 @@ describe('Testing Spredcast models', function () {
     });
   });
 
-
   describe('spredCastModel.getByUrl()', function () {
     it('Should find the researched cast', function (done) {
       common.spredCastModel.getByUrl(fixture.cast.url, function (err, fCast) {
