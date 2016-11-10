@@ -44,13 +44,14 @@ describe('Testing Spredcast models', function () {
 
   describe('spredCastModel.createNew()', function () {
     it('Should create a public cast', function (done) {
-      common.spredCastModel.createNew(user, fixture.cast.name, fixture.cast.description, fixture.cast.tags, fixture.cast.date, fixture.cast.isPublic, fixture.cast.userCapacity, null, fixture.cast.duration, function (err, cCast) {
+      common.spredCastModel.createNew(user, fixture.cast.name, fixture.cast.description, fixture.cast.tags, fixture.cast.date, fixture.cast.isPublic, fixture.cast.userCapacity, null, fixture.cast.duration, fixture.cast.url, function (err, cCast) {
         if (err) {
           done(err);
         } else {
           expect(cCast).to.not.be.null;
           expect(cCast._id).to.not.be.null;
           expect(cCast.name).to.equal(fixture.cast.name);
+          expect(cCast.url).to.equal(fixture.cast.url);
           expect(cCast.description).to.equal(fixture.cast.description);
           cast1 = cCast;
           done();
@@ -59,13 +60,14 @@ describe('Testing Spredcast models', function () {
     });
 
     it('Should create a private cast', function (done) {
-      common.spredCastModel.createNew(user, fixture.cast2.name, fixture.cast2.description, fixture.cast2.tags, fixture.cast2.date, fixture.cast2.isPublic, fixture.cast2.userCapacity, [ user2 ], fixture.cast2.duration, function (err, cCast) {
+      common.spredCastModel.createNew(user, fixture.cast2.name, fixture.cast2.description, fixture.cast2.tags, fixture.cast2.date, fixture.cast2.isPublic, fixture.cast2.userCapacity, [ user2 ], fixture.cast2.duration, fixture.cast2.url, function (err, cCast) {
         if (err) {
           done(err);
         } else {
           expect(cCast).to.not.be.null;
           expect(cCast._id).to.not.be.null;
           expect(cCast.name).to.equal(fixture.cast2.name);
+          expect(cCast.url).to.equal(fixture.cast2.url);
           expect(cCast.description).to.equal(fixture.cast2.description);
           expect(cCast.members).to.have.lengthOf(1);
           cast2 = cCast;
@@ -106,6 +108,46 @@ describe('Testing Spredcast models', function () {
           done(err);
         } else {
           expect(authorisation).to.be.false;
+          done();
+        }
+      });
+    });
+  });
+
+  describe('spredcastModel.updateState()', function () {
+  });
+
+  describe('spredCastModel.getByUrl()', function () {
+    it('Should find the researched cast', function (done) {
+      common.spredCastModel.getByUrl(fixture.cast.url, function (err, fCast) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fCast.name).to.equal(fixture.cast.name);
+          done();
+        }
+      });
+    });
+
+    it('Should return if no cast is found', function (done) {
+      common.spredCastModel.getByUrl(' fpe', function (err, fCast) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fCast).to.be.null;
+          done();
+        }
+      });
+    });
+  });
+
+  describe('spredCastModel.findAvailableCast()', function () {
+    it('Should find available cast', function (done) {
+      common.spredCastModel.findAvailableCast(function (err, fCast) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fCast).has.lengthOf(1);
           done();
         }
       });
