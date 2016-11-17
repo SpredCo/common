@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.7.5
+
+* Add coverUrl to spredcast model
+* Add getByUser to spredcast model
+
+*guedj_m, Thu Nov 17 2016 18:03:46 GMT+0100 (CET)*
+
+---
 ## 0.7.4
 
 * Integrate url to spredcast
