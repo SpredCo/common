@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.4
+
+* Integrate url to spredcast
+
+*guedjm, Thu Nov 10 2016 16:18:22 GMT+0100 (CET)*
+
+---
 ## 0.7.2
 
 
