@@ -27,7 +27,8 @@
     "duration": 10,
     "date": "now",
     "isPublic": true,
-    "userCapacity": 5
+    "userCapacity": 5,
+    "coverUrl": "http://google.com"
   },
   "cast2": {
     "name": "Test cast",
@@ -37,6 +38,7 @@
     "duration": 10,
     "date": "now",
     "isPublic": false,
-    "userCapacity": 5
+    "userCapacity": 5,
+    "coverUrl": "http://google.com2"
   }
 }
