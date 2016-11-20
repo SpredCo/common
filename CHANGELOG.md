@@ -2,9 +2,10 @@
 
 ## 0.7.5
 
-* Presenter is now deducted
+* Add coverUrl to spredcast model
+* Add getByUser to spredcast model
 
-*guedjm, Sun Nov 20 2016 13:43:47 GMT+0100 (CET)*
+*guedj_m, Thu Nov 17 2016 18:03:46 GMT+0100 (CET)*
 
 ---
 ## 0.7.4
