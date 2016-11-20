@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.5
+
+* Presenter is now deducted
+
+*guedjm, Sun Nov 20 2016 13:43:47 GMT+0100 (CET)*
+
+---
 ## 0.7.4
 
 * Integrate url to spredcast
