@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.7.6
+
+* Presenter is now deducted
+
+*guedjm, Sun Nov 20 2016 13:46:12 GMT+0100 (CET)*
+
+---
 ## 0.7.5
 
 * Add coverUrl to spredcast model
