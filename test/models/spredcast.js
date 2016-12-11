@@ -432,6 +432,41 @@ describe('Testing Spredcast models', function () {
     });
   });
 
+  describe('tagModel.checkExist()', function () {
+    it('Should return true if all tags exists', function (done) {
+      common.tagModel.checkExist([tag1._id, tag2._id], function (err, result) {
+        if (err) {
+          done(err);
+        } else {
+          expect(result).to.be.true;
+          done();
+        }
+      });
+    });
+
+    it('Should return false if a tag does not exist', function (done) {
+      common.tagModel.checkExist([tag1._id, 'abcd'], function (err, result) {
+        if (err) {
+          done(err);
+        } else {
+          expect(result).to.be.false;
+          done();
+        }
+      });
+    });
+
+    it('Should return false if a tag does not exist', function (done) {
+      common.tagModel.checkExist([tag1._id, '584d63188c0add434feccabb'], function (err, result) {
+        if (err) {
+          done(err);
+        } else {
+          expect(result).to.be.false;
+          done();
+        }
+      });
+    });
+  });
+
   describe('castTokenModel.getByToken()', function () {
     it('Should find the created token', function (done) {
       common.castTokenModel.getByToken(token.token, function (err, fToken) {
