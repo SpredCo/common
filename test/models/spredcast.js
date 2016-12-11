@@ -6,6 +6,8 @@ var client;
 var user;
 var user2;
 var user3;
+var tag1;
+var tag2;
 var cast1;
 var cast2;
 var token;
@@ -43,9 +45,94 @@ describe('Testing Spredcast models', function () {
     });
   });
 
+  describe('tag.createNew()', function () {
+    it('Should create a new tag', function (done) {
+      common.tagModel.createNew(fixture.tag1.name, fixture.tag1.description, function (err, cTag1) {
+        if (err) {
+          done(err);
+        } else {
+          common.tagModel.createNew(fixture.tag2.name, fixture.tag2.description, function (err, cTag2) {
+            if (err) {
+              done(err);
+            } else {
+              expect(cTag1.name).to.equal(fixture.tag1.name);
+              expect(cTag1.description).to.equal(fixture.tag1.description);
+              expect(cTag2.name).to.equal(fixture.tag2.name);
+              expect(cTag2.description).to.equal(fixture.tag2.description);
+              tag1 = cTag1;
+              tag2 = cTag2;
+              done();
+            }
+          });
+        }
+      });
+    });
+  });
+
+  describe('tag.getAll()', function () {
+    it('Should return all created tags', function (done) {
+      common.tagModel.getAll(function (err, fTags) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fTags).to.have.lengthOf(2);
+          done();
+        }
+      });
+    });
+  });
+
+  describe('tag.getByName()', function () {
+    it('Should return the right tag', function (done) {
+      common.tagModel.getByName(tag1.name, function (err, fTag) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fTag).to.not.be.null;
+          done();
+        }
+      });
+    });
+
+    it('Should return null if no tags are found', function (done) {
+      common.tagModel.getByName('toto', function (err, fTag) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fTag).to.be.null;
+          done();
+        }
+      });
+    });
+  });
+
+  describe('tag.search()', function () {
+    it('Should return the matched tag', function (done) {
+      common.tagModel.search('co', 10, function (err, fTags) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fTags).to.have.lengthOf(1);
+          done();
+        }
+      });
+    });
+
+    it('Should return emty array if no tags are matched', function (done) {
+      common.tagModel.search('p', 10, function (err, fTags) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fTags).to.have.lengthOf(0);
+          done();
+        }
+      });
+    });
+  });
+
   describe('spredCastModel.createNew()', function () {
     it('Should create a public cast', function (done) {
-      common.spredCastModel.createNew(user, fixture.cast.name, fixture.cast.description, fixture.cast.tags, fixture.cast.date, fixture.cast.isPublic, fixture.cast.userCapacity, null, fixture.cast.duration, fixture.cast.url, fixture.cast.coverUrl, function (err, cCast) {
+      common.spredCastModel.createNew(user, fixture.cast.name, fixture.cast.description, [tag1, tag2], fixture.cast.date, fixture.cast.isPublic, fixture.cast.userCapacity, null, fixture.cast.duration, fixture.cast.url, fixture.cast.coverUrl, function (err, cCast) {
         if (err) {
           done(err);
         } else {
@@ -62,7 +149,7 @@ describe('Testing Spredcast models', function () {
     });
 
     it('Should create a private cast', function (done) {
-      common.spredCastModel.createNew(user, fixture.cast2.name, fixture.cast2.description, fixture.cast2.tags, fixture.cast2.date, fixture.cast2.isPublic, fixture.cast2.userCapacity, [ user2 ], fixture.cast2.duration, fixture.cast2.url, fixture.cast2.coverUrl, function (err, cCast) {
+      common.spredCastModel.createNew(user, fixture.cast2.name, fixture.cast2.description, [tag1, tag2], fixture.cast2.date, fixture.cast2.isPublic, fixture.cast2.userCapacity, [ user2 ], fixture.cast2.duration, fixture.cast2.url, fixture.cast2.coverUrl, function (err, cCast) {
         if (err) {
           done(err);
         } else {
@@ -264,6 +351,8 @@ describe('Testing Spredcast models', function () {
           expect(ret.user_count).to.not.be.undefined;
           expect(ret.is_public).to.not.be.undefined;
           expect(ret.cover_url).to.not.be.undefined;
+          expect(ret.tags[0]._id).to.be.undefined;
+          expect(ret.tags[0].id).to.not.be.undefined;
           done();
         }
       });
@@ -284,6 +373,8 @@ describe('Testing Spredcast models', function () {
           expect(ret.user_count).to.not.be.undefined;
           expect(ret.is_public).to.not.be.undefined;
           expect(ret.cover_url).to.not.be.undefined;
+          expect(ret.tags[0]._id).to.be.undefined;
+          expect(ret.tags[0].id).to.not.be.undefined;
           done();
         }
       });
@@ -322,6 +413,19 @@ describe('Testing Spredcast models', function () {
           done(err);
         } else {
           expect(fCast).has.lengthOf(2);
+          done();
+        }
+      });
+    });
+  });
+
+  describe('spredCastModel.getByTag()', function () {
+    it('Should return a cast array', function (done) {
+      common.spredCastModel.getByTag(tag1, function (err, fCasts) {
+        if (err) {
+          done(err);
+        } else {
+          expect(fCasts).to.have.lengthOf(2);
           done();
         }
       });

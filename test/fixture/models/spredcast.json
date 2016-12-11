@@ -40,5 +40,13 @@
     "isPublic": false,
     "userCapacity": 5,
     "coverUrl": "http://google.com2"
+  },
+  "tag1": {
+    "name": "Coding",
+    "description": "Code learning"
+  },
+  "tag2": {
+    "name": "C++",
+    "description": "Amazing language"
   }
 }

@@ -12,7 +12,8 @@ const lib = {
   messageModel: require('./lib/models/inbox/message'),
   messageReadModel: require('./lib/models/inbox/messageRead'),
   spredCastModel: require('./lib/models/spredcast/spredcast'),
-  castTokenModel: require('./lib/models/spredcast/cast-token')
+  castTokenModel: require('./lib/models/spredcast/cast-token'),
+  tagModel: require('./lib/models/spredcast/tag')
 };
 
 module.exports = lib;
