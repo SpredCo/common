@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.8.0
+
+* Integrate tag object
+
+*guedjm, Sun Dec 11 2016 13:12:37 GMT+0100 (CET)*
+
+---
 ## 0.7.6
 
 * Presenter is now deducted
