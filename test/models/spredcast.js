@@ -508,9 +508,9 @@ describe('Testing Spredcast models', function () {
   });
 
   describe('Testing spredcastRegitrationModel', function () {
-    describe('Testing spredcastRegistrationModel.createNew()', function () {
+    describe('Testing spredcastReminderModel.createNew()', function () {
       it('Should create a new spredcastRegistration object', function (done) {
-        common.spredcastRegistrationModel.createNew(cast1._id, user._id, function (err, cCastRegistration) {
+        common.spredcastReminderModel.createNew(cast1._id, user._id, function (err, cCastRegistration) {
           if (err) {
             done(err);
           } else {
@@ -521,9 +521,9 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing spredcastRegistration.getUserRegistration()', function () {
+    describe('Testing spredcastRegistration.getUserReminder()', function () {
       it('Should return an array of registred cast', function (done) {
-        common.spredcastRegistrationModel.getUserRegistration(user._id, function (err, fCastRegistrations) {
+        common.spredcastReminderModel.getUserReminder(user._id, function (err, fCastRegistrations) {
           if (err) {
             done(err);
           } else {
@@ -535,7 +535,7 @@ describe('Testing Spredcast models', function () {
       });
 
       it('Should return an array of registred cast', function (done) {
-        common.spredcastRegistrationModel.getUserRegistration(user2._id, function (err, fCastRegistrations) {
+        common.spredcastReminderModel.getUserReminder(user2._id, function (err, fCastRegistrations) {
           if (err) {
             done(err);
           } else {
@@ -546,9 +546,9 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing spredcastRegistration.getCastRegistration()', function () {
+    describe('Testing spredcastRegistration.getCastReminder()', function () {
       it('Should return the array of user registered to cast', function (done) {
-        common.spredcastRegistrationModel.getCastRegistration(cast1._id, function (err, fCastRegistrations) {
+        common.spredcastReminderModel.getCastReminder(cast1._id, function (err, fCastRegistrations) {
           if (err) {
             done(err);
           } else {
@@ -560,9 +560,9 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing spredcastRegistration.userIsRegistered()', function () {
+    describe('Testing spredcastRegistration.userIsReminded()', function () {
       it('Should return true if user is already registered', function (done) {
-        common.spredcastRegistrationModel.userIsRegistered(cast1._id, user._id, function (err, result) {
+        common.spredcastReminderModel.userIsReminded(cast1._id, user._id, function (err, result) {
           if (err) {
             done(err);
           } else {
@@ -573,7 +573,7 @@ describe('Testing Spredcast models', function () {
       });
 
       it('Should return false if user is not registered', function (done) {
-        common.spredcastRegistrationModel.userIsRegistered(cast1._id, user2._id, function (err, result) {
+        common.spredcastReminderModel.userIsReminded(cast1._id, user2._id, function (err, result) {
           if (err) {
             done(err);
           } else {
@@ -584,9 +584,9 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing spredcastRegistration.unRegister()', function () {
+    describe('Testing spredcastRegistration.removeReminder()', function () {
       it('Should deleted the registration object', function (done) {
-        common.spredcastRegistrationModel.unRegister(cast1._id, user._id, function (err, result) {
+        common.spredcastReminderModel.removeReminder(cast1._id, user._id, function (err, result) {
           if (err) {
             done(err);
           } else {
