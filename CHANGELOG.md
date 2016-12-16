@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.10.0
+
+* Add unfollow function
+
+*guedjm, Fri Dec 16 2016 12:29:19 GMT+0100 (CET)*
+
+---
 ## 0.9.0
 
 * Integrate new follow system
