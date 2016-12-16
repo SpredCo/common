@@ -377,6 +377,7 @@ describe('Testing user models', function () {
           if (err) {
             done(err);
           } else {
+            expect(result).to.be.true;
             common.followModel.userIsFollowing(pUser._id, faUser._id, function (err, result) {
               if (err) {
                 done(err);
