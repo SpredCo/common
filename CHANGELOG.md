@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.11.0
+
+* Integrate spredcastRegistration model
+
+*guedjm, Fri Dec 16 2016 15:55:36 GMT+0100 (CET)*
+
+---
 ## 0.10.0
 
 * Add unfollow function
