@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.11.1
+
+* Rename SpredcastRegistration to SpredcastReminder
+
+*guedjm, Fri Dec 16 2016 19:17:39 GMT+0100 (CET)*
+
+---
 ## 0.11.0
 
 * Integrate spredcastRegistration model
