@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.9.0
+
+* Integrate new follow system
+
+*guedjm, Fri Dec 16 2016 12:20:53 GMT+0100 (CET)*
+
+---
 ## 0.8.0
 
 * Integrate tag object
