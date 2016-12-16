@@ -23,8 +23,6 @@ describe('Testing user models', function () {
             expect(cUser.pseudo).to.equal(fixture.password.pseudo);
             expect(cUser.firstName).to.equal(fixture.password.firstName);
             expect(cUser.lastName).to.equal(fixture.password.lastName);
-            expect(cUser.following).to.be.an.array;
-            expect(cUser.following).to.have.lengthOf(0);
             pUser = cUser;
             done();
           }
@@ -48,8 +46,6 @@ describe('Testing user models', function () {
             expect(cUser.pictureUrl).to.equal(fixture.facebook.pictureUrl);
             expect(cUser.firstName).to.equal(fixture.password.firstName);
             expect(cUser.lastName).to.equal(fixture.password.lastName);
-            expect(cUser.following).to.be.an.array;
-            expect(cUser.following).to.have.lengthOf(0);
             faUser = cUser;
             done();
           }
@@ -73,8 +69,6 @@ describe('Testing user models', function () {
             expect(cUser.pictureUrl).to.equal(fixture.google.pictureUrl);
             expect(cUser.firstName).to.equal(fixture.google.firstName);
             expect(cUser.lastName).to.equal(fixture.google.lastName);
-            expect(cUser.following).to.be.an.array;
-            expect(cUser.following).to.have.lengthOf(0);
             gUser = cUser;
             done();
           }
@@ -180,7 +174,7 @@ describe('Testing user models', function () {
     });
 
     it('getById()', function (done) {
-      common.userModel.getById(pUser._id, false, function (err, fUser) {
+      common.userModel.getById(pUser._id, function (err, fUser) {
         if (err) {
           done(err);
         } else {
@@ -224,59 +218,33 @@ describe('Testing user models', function () {
       });
     });
 
-    it('follow()', function (done) {
-      pUser.follow(faUser, function (err) {
-        if (err) {
-          done(err);
-        } else {
-          common.userModel.getById(pUser._id, true, function (err, fUser) {
-            if (err) {
-              done(err);
-            } else {
-              expect(fUser).to.not.be.null;
-              expect(fUser.following).to.have.lengthOf(1);
-              expect(fUser.following[0]._id).to.eql(faUser._id);
-              expect(fUser.following[0].pseudo).to.eql(faUser.pseudo);
-              pUser = fUser;
-              done();
-            }
-          });
-        }
-      });
-    });
-
     it('toObject', function () {
       const obj = pUser.toObject({print: true});
       expect(obj._id).to.be.undefined;
       expect(obj.id).to.eql(pUser._id);
       expect(obj.password).to.be.undefined;
       expect(obj.__v).to.be.undefined;
-      expect(obj.following[0]._id).to.be.undefined;
     });
 
     it('getByPseudo()', function (done) {
-      common.userModel.getByPseudo(pUser.pseudo, false, function (err, fUser) {
+      common.userModel.getByPseudo(pUser.pseudo, function (err, fUser) {
         if (err) {
           done(err);
         } else {
           expect(fUser).to.not.be.null;
           expect(fUser._id).to.eql(pUser._id);
-          expect(fUser.following).to.be.an.array;
-          expect(fUser.following[0]._id).to.be.undefined;
           done();
         }
       });
     });
 
     it('getByPseudo()', function (done) {
-      common.userModel.getByPseudo(pUser.pseudo, true, function (err, fUser) {
+      common.userModel.getByPseudo(pUser.pseudo, function (err, fUser) {
         if (err) {
           done(err);
         } else {
           expect(fUser).to.not.be.null;
           expect(fUser._id).to.eql(pUser._id);
-          expect(fUser.following).to.be.an.array;
-          expect(fUser.following[0]._id).to.not.be.undefined;
           done();
         }
       });
@@ -288,25 +256,6 @@ describe('Testing user models', function () {
       expect(obj.id).to.eql(pUser._id);
       expect(obj.password).to.be.undefined;
       expect(obj.__v).to.be.undefined;
-      expect(obj.following[0]._id).to.be.undefined;
-    });
-
-    it('unfollow()', function (done) {
-      pUser.unfollow(faUser, function (err) {
-        if (err) {
-          done(err);
-        } else {
-          common.userModel.getById(pUser._id, true, function (err, fUser) {
-            if (err) {
-              done(err);
-            } else {
-              expect(fUser).to.not.be.null;
-              expect(fUser.following).to.have.lengthOf(0);
-              done();
-            }
-          });
-        }
-      });
     });
 
     it('get fullname', function (done) {
@@ -354,6 +303,71 @@ describe('Testing user models', function () {
           expect(fReports[0].by.pseudo).to.equal(faUser.pseudo);
           done();
         }
+      });
+    });
+  });
+
+  describe('Testing follow model', function () {
+    describe('Testing FollowModel.createNew()', function () {
+      it('Should create a new follow object', function (done) {
+        common.followModel.createNew(pUser._id, faUser._id, function (err, cFollow) {
+          if (err) {
+            done(err);
+          } else {
+            expect(cFollow.user.toString()).to.equal(pUser._id.toString());
+            expect(cFollow.following.toString()).to.equal(faUser._id.toString());
+            done();
+          }
+        });
+      });
+
+      it('Should create a new follow object', function (done) {
+        common.followModel.createNew(faUser._id, gUser._id, function (err, cFollow) {
+          if (err) {
+            done(err);
+          } else {
+            expect(cFollow.user.toString()).to.equal(faUser._id.toString());
+            expect(cFollow.following.toString()).to.equal(gUser._id.toString());
+            done();
+          }
+        });
+      });
+    });
+
+    describe('Testing FollowModel.getUserFollow()', function () {
+      it('Should return all user follow', function (done) {
+        common.followModel.getUserFollow(pUser._id, function (err, fFollows) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fFollows).to.have.lengthOf(1);
+            done();
+          }
+        });
+      });
+    });
+
+    describe('Testing FollowModel.userIsFollowing()', function () {
+      it('Should reply true if user is already following', function (done) {
+        common.followModel.userIsFollowing(pUser._id, faUser._id, function (err, result) {
+          if (err) {
+            done(err);
+          } else {
+            expect(result).to.be.true;
+            done();
+          }
+        });
+      });
+
+      it('Should reply false if user is not following', function (done) {
+        common.followModel.userIsFollowing(pUser._id, gUser._id, function (err, result) {
+          if (err) {
+            done(err);
+          } else {
+            expect(result).to.be.false;
+            done();
+          }
+        });
       });
     });
   });
