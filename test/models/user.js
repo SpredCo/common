@@ -370,5 +370,24 @@ describe('Testing user models', function () {
         });
       });
     });
+
+    describe('Testing FollowModel.unFollow()', function () {
+      it('Should delete the follow object', function (done) {
+        common.followModel.unFollow(pUser._id, faUser._id, function (err, result) {
+          if (err) {
+            done(err);
+          } else {
+            common.followModel.userIsFollowing(pUser._id, faUser._id, function (err, result) {
+              if (err) {
+                done(err);
+              } else {
+                expect(result).to.be.false;
+                done();
+              }
+            });
+          }
+        });
+      });
+    });
   });
 });
