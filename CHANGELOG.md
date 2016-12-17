@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.0
+
+* Add tagSubscriptionModel
+
+*guedjm, Sat Dec 17 2016 11:55:54 GMT+0100 (CET)*
+
+---
 ## 0.11.1
 
 * Rename SpredcastRegistration to SpredcastReminder
