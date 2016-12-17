@@ -507,7 +507,7 @@ describe('Testing Spredcast models', function () {
     });
   });
 
-  describe('Testing spredcastRegitrationModel', function () {
+  describe('Testing spredcastReminderModel', function () {
     describe('Testing spredcastReminderModel.createNew()', function () {
       it('Should create a new spredcastRegistration object', function (done) {
         common.spredcastReminderModel.createNew(cast1._id, user._id, function (err, cCastRegistration) {
@@ -521,7 +521,7 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing spredcastRegistration.getUserReminder()', function () {
+    describe('Testing spredcastReminderModel.getUserReminder()', function () {
       it('Should return an array of registred cast', function (done) {
         common.spredcastReminderModel.getUserReminder(user._id, function (err, fCastRegistrations) {
           if (err) {
@@ -546,7 +546,7 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing spredcastRegistration.getCastReminder()', function () {
+    describe('Testing spredcastReminderModel.getCastReminder()', function () {
       it('Should return the array of user registered to cast', function (done) {
         common.spredcastReminderModel.getCastReminder(cast1._id, function (err, fCastRegistrations) {
           if (err) {
@@ -560,7 +560,7 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing spredcastRegistration.userIsReminded()', function () {
+    describe('Testing spredcastReminderModel.userIsReminded()', function () {
       it('Should return true if user is already registered', function (done) {
         common.spredcastReminderModel.userIsReminded(cast1._id, user._id, function (err, result) {
           if (err) {
@@ -578,6 +578,30 @@ describe('Testing Spredcast models', function () {
             done(err);
           } else {
             expect(result).to.be.false;
+            done();
+          }
+        });
+      });
+    });
+
+    describe('Testing spredcastReminderModel.getUserReminderByCastIds()', function () {
+      it('Should return an array of reminder for selected casts', function (done) {
+        common.spredcastReminderModel.getUserReminderByCastIds([cast1._id, cast2._id], user._id, function (err, fReminders) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fReminders).to.have.lengthOf(1);
+            done();
+          }
+        });
+      });
+
+      it('Should return false if id are not valid', function (done) {
+        common.spredcastReminderModel.getUserReminderByCastIds([cast1._id, 'lol'], user._id, function (err, fReminders) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fReminders).to.be.false;
             done();
           }
         });
