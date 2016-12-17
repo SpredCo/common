@@ -11,6 +11,8 @@ var tag2;
 var cast1;
 var cast2;
 var token;
+var reminder;
+var subscription;
 
 describe('Testing Spredcast models', function () {
   before(function (done) {
@@ -101,6 +103,19 @@ describe('Testing Spredcast models', function () {
             done(err);
           } else {
             expect(fTag).to.be.null;
+            done();
+          }
+        });
+      });
+    });
+
+    describe('tag.getById()', function () {
+      it('Should return the tag', function (done) {
+        common.tagModel.getById(tag1._id, function (err, fTag) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fTag.name).to.equal(tag1.name);
             done();
           }
         });
@@ -508,59 +523,60 @@ describe('Testing Spredcast models', function () {
   });
 
   describe('Testing spredcastReminderModel', function () {
-    describe('Testing spredcastReminderModel.createNew()', function () {
+    describe('spredcastReminderModel.createNew()', function () {
       it('Should create a new spredcastRegistration object', function (done) {
-        common.spredcastReminderModel.createNew(cast1._id, user._id, function (err, cCastRegistration) {
+        common.spredcastReminderModel.createNew(cast1._id, user._id, function (err, cCastReminder) {
           if (err) {
             done(err);
           } else {
-            expect(cCastRegistration).to.not.be.null;
+            expect(cCastReminder).to.not.be.null;
+            reminder = cCastReminder;
             done();
           }
         });
       });
     });
 
-    describe('Testing spredcastReminderModel.getUserReminder()', function () {
+    describe('spredcastReminderModel.getUserReminder()', function () {
       it('Should return an array of registred cast', function (done) {
-        common.spredcastReminderModel.getUserReminder(user._id, function (err, fCastRegistrations) {
+        common.spredcastReminderModel.getUserReminder(user._id, function (err, fCastReminders) {
           if (err) {
             done(err);
           } else {
-            expect(fCastRegistrations).to.have.lengthOf(1);
-            expect(fCastRegistrations[0].cast.name).to.equal(cast1.name);
+            expect(fCastReminders).to.have.lengthOf(1);
+            expect(fCastReminders[0].cast.name).to.equal(cast1.name);
             done();
           }
         });
       });
 
       it('Should return an array of registred cast', function (done) {
-        common.spredcastReminderModel.getUserReminder(user2._id, function (err, fCastRegistrations) {
+        common.spredcastReminderModel.getUserReminder(user2._id, function (err, fCastReminders) {
           if (err) {
             done(err);
           } else {
-            expect(fCastRegistrations).to.have.lengthOf(0);
+            expect(fCastReminders).to.have.lengthOf(0);
             done();
           }
         });
       });
     });
 
-    describe('Testing spredcastReminderModel.getCastReminder()', function () {
+    describe('spredcastReminderModel.getCastReminder()', function () {
       it('Should return the array of user registered to cast', function (done) {
-        common.spredcastReminderModel.getCastReminder(cast1._id, function (err, fCastRegistrations) {
+        common.spredcastReminderModel.getCastReminder(cast1._id, function (err, fCastReminders) {
           if (err) {
             done(err);
           } else {
-            expect(fCastRegistrations).to.have.lengthOf(1);
-            expect(fCastRegistrations[0].user.pseudo).to.equal(user.pseudo);
+            expect(fCastReminders).to.have.lengthOf(1);
+            expect(fCastReminders[0].user.pseudo).to.equal(user.pseudo);
             done();
           }
         });
       });
     });
 
-    describe('Testing spredcastReminderModel.userIsReminded()', function () {
+    describe('spredcastReminderModel.userIsReminded()', function () {
       it('Should return true if user is already registered', function (done) {
         common.spredcastReminderModel.userIsReminded(cast1._id, user._id, function (err, result) {
           if (err) {
@@ -584,7 +600,7 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing spredcastReminderModel.getUserReminderByCastIds()', function () {
+    describe('spredcastReminderModel.getUserReminderByCastIds()', function () {
       it('Should return an array of reminder for selected casts', function (done) {
         common.spredcastReminderModel.getUserReminderByCastIds([cast1._id, cast2._id], user._id, function (err, fReminders) {
           if (err) {
@@ -608,7 +624,7 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing spredcastRegistration.removeReminder()', function () {
+    describe('spredcastReminderModel.removeReminder()', function () {
       it('Should deleted the registration object', function (done) {
         common.spredcastReminderModel.removeReminder(cast1._id, user._id, function (err, result) {
           if (err) {
@@ -620,23 +636,33 @@ describe('Testing Spredcast models', function () {
         });
       });
     });
+
+    describe('spedcastReminderModel.toObject()', function () {
+      it('Should return a clean spredcastReminder object', function () {
+        var result = reminder.toObject({ print: true });
+        expect(result._id).to.be.undefined;
+        expect(result.id).to.not.be.undefined;
+        expect(result.updatedAt).to.be.undefined;
+      });
+    });
   });
 
   describe('Testing tagSubscriptionModel', function () {
-    describe('Testing tagSubscriptionModel.createNew()', function () {
+    describe('tagSubscriptionModel.createNew()', function () {
       it('Should create a new tagSubscription', function (done) {
         common.tagSubscriptionModel.createNew(tag1._id, user._id, function (err, cSubscription) {
           if (err) {
             done(err);
           } else {
             expect(cSubscription).to.not.be.null;
+            subscription = cSubscription;
             done();
           }
         });
       });
     });
 
-    describe('Testing tagSubscriptionModel.getUserSubscription()', function () {
+    describe('tagSubscriptionModel.getUserSubscription()', function () {
       it('Should return an array of subscribed tags', function (done) {
         common.tagSubscriptionModel.getUserSubscription(user._id, function (err, fSubscriptions) {
           if (err) {
@@ -650,7 +676,7 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing tagSubscriptionModel.userIsSubscribed()', function () {
+    describe('tagSubscriptionModel.userIsSubscribed()', function () {
       it('Should return true if user has subscribed to the tag', function (done) {
         common.tagSubscriptionModel.userIsSubscribed(tag1._id, user._id, function (err, result) {
           if (err) {
@@ -674,7 +700,7 @@ describe('Testing Spredcast models', function () {
       });
     });
 
-    describe('Testing tagSubscriptionModel.deleteSubscription()', function () {
+    describe('tagSubscriptionModel.deleteSubscription()', function () {
       it('Should remove a subscription', function (done) {
         common.tagSubscriptionModel.removeSubscription(tag1._id, user._id, function (err, result) {
           if (err) {
@@ -684,6 +710,15 @@ describe('Testing Spredcast models', function () {
             done();
           }
         });
+      });
+    });
+
+    describe('tagSubscriptionModel.toObject()', function () {
+      it('Should return a clean object', function () {
+        var result = subscription.toObject({ print: true });
+        expect(result._id).to.be.undefined;
+        expect(result.id).to.not.be.undefined;
+        expect(result.updatedAt).to.be.undefined;
       });
     });
   });
