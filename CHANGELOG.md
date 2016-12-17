@@ -1,5 +1,12 @@
 # Changelog
 
+## 0.12.2
+
+* Add filter arg to findAvailableCast()
+
+*guedjm, Sat Dec 17 2016 13:53:58 GMT+0100 (CET)*
+
+---
 ## 0.12.1
 
 * Add some tests
