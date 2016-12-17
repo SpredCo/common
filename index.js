@@ -15,7 +15,8 @@ const lib = {
   castTokenModel: require('./lib/models/spredcast/cast-token'),
   tagModel: require('./lib/models/spredcast/tag'),
   followModel: require('./lib/models/user/follow'),
-  spredcastReminderModel: require('./lib/models/spredcast/spredcastReminder')
+  spredcastReminderModel: require('./lib/models/spredcast/spredcastReminder'),
+  tagSubscriptionModel: require('./lib/models/spredcast/tagSubscription')
 };
 
 module.exports = lib;

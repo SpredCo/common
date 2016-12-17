@@ -621,4 +621,70 @@ describe('Testing Spredcast models', function () {
       });
     });
   });
+
+  describe('Testing tagSubscriptionModel', function () {
+    describe('Testing tagSubscriptionModel.createNew()', function () {
+      it('Should create a new tagSubscription', function (done) {
+        common.tagSubscriptionModel.createNew(tag1._id, user._id, function (err, cSubscription) {
+          if (err) {
+            done(err);
+          } else {
+            expect(cSubscription).to.not.be.null;
+            done();
+          }
+        });
+      });
+    });
+
+    describe('Testing tagSubscriptionModel.getUserSubscription()', function () {
+      it('Should return an array of subscribed tags', function (done) {
+        common.tagSubscriptionModel.getUserSubscription(user._id, function (err, fSubscriptions) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fSubscriptions).to.have.lengthOf(1);
+            expect(fSubscriptions[0].tag.name).to.equal(tag1.name);
+            done();
+          }
+        });
+      });
+    });
+
+    describe('Testing tagSubscriptionModel.userIsSubscribed()', function () {
+      it('Should return true if user has subscribed to the tag', function (done) {
+        common.tagSubscriptionModel.userIsSubscribed(tag1._id, user._id, function (err, result) {
+          if (err) {
+            done(err);
+          } else {
+            expect(result).to.be.true;
+            done();
+          }
+        });
+      });
+
+      it('Should return false if user has not subscribed to the tag', function (done) {
+        common.tagSubscriptionModel.userIsSubscribed(tag2._id, user._id, function (err, result) {
+          if (err) {
+            done(err);
+          } else {
+            expect(result).to.be.false;
+            done();
+          }
+        });
+      });
+    });
+
+    describe('Testing tagSubscriptionModel.deleteSubscription()', function () {
+      it('Should remove a subscription', function (done) {
+        common.tagSubscriptionModel.removeSubscription(tag1._id, user._id, function (err, result) {
+          if (err) {
+            done(err);
+          } else {
+            expect(result).to.be.true;
+            done();
+          }
+        });
+      });
+    });
+  });
 });
