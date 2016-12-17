@@ -1,5 +1,13 @@
 # Changelog
 
+## 0.12.1
+
+* Add some tests
+* Add tagModel.getById()
+
+*guedjm, Sat Dec 17 2016 12:45:10 GMT+0100 (CET)*
+
+---
 ## 0.12.0
 
 * Add tagSubscriptionModel
