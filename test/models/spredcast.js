@@ -202,7 +202,7 @@ describe('Testing Spredcast models', function () {
       });
 
       it('Should create a private cast', function (done) {
-        common.spredCastModel.createNew(user, fixture.cast2.name, fixture.cast2.description, [tag1, tag2], fixture.cast2.date, fixture.cast2.isPublic, fixture.cast2.userCapacity, [ user2 ], fixture.cast2.duration, fixture.cast2.url, fixture.cast2.coverUrl, function (err, cCast) {
+        common.spredCastModel.createNew(user, fixture.cast2.name, fixture.cast2.description, [tag1], fixture.cast2.date, fixture.cast2.isPublic, fixture.cast2.userCapacity, [ user2 ], fixture.cast2.duration, fixture.cast2.url, fixture.cast2.coverUrl, function (err, cCast) {
           if (err) {
             done(err);
           } else {
@@ -463,7 +463,51 @@ describe('Testing Spredcast models', function () {
 
     describe('spredCastModel.findAvailableCast()', function () {
       it('Should find available cast', function (done) {
-        common.spredCastModel.findAvailableCast(function (err, fCast) {
+        common.spredCastModel.findAvailableCast({}, function (err, fCast) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fCast).has.lengthOf(2);
+            done();
+          }
+        });
+      });
+
+      it('Should find available cast with state filter', function (done) {
+        common.spredCastModel.findAvailableCast({ state: 0 }, function (err, fCast) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fCast).has.lengthOf(0);
+            done();
+          }
+        });
+      });
+
+      it('Should find available cast with state filter', function (done) {
+        common.spredCastModel.findAvailableCast({ state: [0, 1] }, function (err, fCast) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fCast).has.lengthOf(2);
+            done();
+          }
+        });
+      });
+
+      it('Should find available cast with tag filter', function (done) {
+        common.spredCastModel.findAvailableCast({ tags: tag2._id }, function (err, fCast) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fCast).has.lengthOf(1);
+            done();
+          }
+        });
+      });
+
+      it('Should find available cast with tag filter', function (done) {
+        common.spredCastModel.findAvailableCast({ tags: [tag1._id, tag2._id] }, function (err, fCast) {
           if (err) {
             done(err);
           } else {
