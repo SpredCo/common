@@ -203,7 +203,7 @@ describe('Testing auth models', function () {
     });
 
     it('get duration', function (done) {
-      expect(accessToken.duration).to.equal(3600);
+      expect(accessToken.duration).to.equal(3600 * 24 * 7);
       done();
     });
 
@@ -306,7 +306,7 @@ describe('Testing auth models', function () {
     });
 
     it('get duration', function (done) {
-      expect(refreshToken.duration).to.equal(24 * 3600);
+      expect(refreshToken.duration).to.equal(24 * 3600 * 30);
       done();
     });
 

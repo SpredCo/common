@@ -60,8 +60,10 @@ describe('Testing Spredcast models', function () {
               } else {
                 expect(cTag1.name).to.equal(fixture.tag1.name);
                 expect(cTag1.description).to.equal(fixture.tag1.description);
+                expect(cTag1.nbFollow).to.equal(0);
                 expect(cTag2.name).to.equal(fixture.tag2.name);
                 expect(cTag2.description).to.equal(fixture.tag2.description);
+                expect(cTag2.nbFollow).to.equal(0);
                 tag1 = cTag1;
                 tag2 = cTag2;
                 done();
@@ -175,6 +177,54 @@ describe('Testing Spredcast models', function () {
             done(err);
           } else {
             expect(result).to.be.false;
+            done();
+          }
+        });
+      });
+    });
+
+    describe('tagModel.followTag()', function () {
+      it('Should increment the number of follow', function (done) {
+        common.tagModel.followTag(tag2._id, function (err) {
+          if (err) {
+            done(err);
+          } else {
+            done();
+          }
+        });
+      });
+
+      it('Should increment the number of follow', function (done) {
+        common.tagModel.followTag(tag2._id, function (err) {
+          if (err) {
+            done(err);
+          } else {
+            done();
+          }
+        });
+      });
+    });
+
+    describe('tagModel.getBestTag()', function () {
+      it('Should return the best tags', function (done) {
+        common.tagModel.getBestTag(2, function (err, fTags) {
+          if (err) {
+            done(err);
+          } else {
+            expect(fTags).to.have.lengthOf(2);
+            expect(fTags[0].name).to.equal(tag2.name);
+            done();
+          }
+        });
+      })
+    });
+
+    describe('tagModel.unFollowTag()', function () {
+      it('Should decrement the number of follow', function (done) {
+        common.tagModel.unFollowTag(tag2._id, function (err) {
+          if (err) {
+            done(err);
+          } else {
             done();
           }
         });
