@@ -517,7 +517,7 @@ describe('Testing Spredcast models', function () {
           if (err) {
             done(err);
           } else {
-            expect(fCast).has.lengthOf(2);
+            expect(fCast).has.lengthOf(1);
             done();
           }
         });
@@ -539,7 +539,7 @@ describe('Testing Spredcast models', function () {
           if (err) {
             done(err);
           } else {
-            expect(fCast).has.lengthOf(2);
+            expect(fCast).has.lengthOf(1);
             done();
           }
         });
@@ -561,7 +561,7 @@ describe('Testing Spredcast models', function () {
           if (err) {
             done(err);
           } else {
-            expect(fCast).has.lengthOf(2);
+            expect(fCast).has.lengthOf(1);
             done();
           }
         });
